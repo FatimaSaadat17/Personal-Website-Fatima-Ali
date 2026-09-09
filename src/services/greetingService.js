@@ -1,7 +1,8 @@
 import { portfolioData } from '../data/portfolioData';
 
+const API_BASE = 'portfolio-website-backend-production-a32e.up.railway.app/api';
+
 const LOCAL_STORAGE_KEY = 'floppy_disk_greetings_v1';
-const API_BASE = '/api';
 
 /**
  * Check if backend is reachable
