@@ -69,7 +69,7 @@ export default function AboutSection() {
             <div className="focus-indicator" style={{ background: '#EFC96A' }} />
             <div>
               <strong>LinkedIn</strong>
-              <p>https://linkedin.com.</p>
+              <p>https://linkedin.com</p>
             </div>
           </div>
 
@@ -80,6 +80,15 @@ export default function AboutSection() {
               <p>fsaadat917@proton.me   fsaadat917@gmail.com   fsa463@student.bham.ac.uk</p>
             </div>
           </div>
+
+          <div className="focus-item">
+            <div className="focus-indicator" style={{ background: '#A290B7A' }} />
+            <div>
+              <strong>Hyperfixations</strong>
+              <p>3D Printing, Journaling, Statistics</p>
+            </div>
+          </div>
+          
         </div>
       </div>
     </div>
