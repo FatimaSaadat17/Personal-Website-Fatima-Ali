@@ -82,7 +82,7 @@ export default function AboutSection() {
           </div>
 
           <div className="focus-item">
-            <div className="focus-indicator" style={{ background: '#A290B7A' }} />
+            <div className="focus-indicator" style={{ background: '#9f82d9' }} />
             <div>
               <strong>Hyperfixations</strong>
               <p>3D Printing, Journaling, Statistics</p>
