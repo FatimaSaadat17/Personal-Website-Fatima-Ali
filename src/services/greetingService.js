@@ -1,6 +1,6 @@
 import { portfolioData } from '../data/portfolioData';
 
-const API_BASE = 'portfolio-website-backend-production-a32e.up.railway.app/api';
+const API_BASE = 'https://backend-deploy-three-blond.vercel.app/api';
 
 const LOCAL_STORAGE_KEY = 'floppy_disk_greetings_v1';
 
