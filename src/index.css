@@ -1,0 +1,52 @@
+:root {
+  --canvas-bg: #ffe2e2;
+  --text-dark: #222222;
+  --text-muted: #555555;
+  --text-dim: #777777;
+  --font-mono: 'Space Mono', 'DM Mono', 'Courier New', monospace;
+  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-pixel: 'VT323', monospace;
+  
+  --disk-pink: #da91a3;
+  --disk-yellow: #f3cf73;
+  --disk-blue: #aad9dd;
+  --disk-green: #c6ddaa;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  min-height: 100vh;
+  background-color: var(--canvas-bg);
+  color: var(--text-dark);
+  font-family: var(--font-sans);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Subtle retro dotted background */
+body {
+  background-image: radial-gradient(rgba(0, 0, 0, 0.05) 1px, transparent 0);
+  background-size: 24px 24px;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+input, textarea {
+  font-family: inherit;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}

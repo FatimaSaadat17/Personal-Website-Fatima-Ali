@@ -1,0 +1,420 @@
+/* ==========================================================================
+   3.5" FLOPPY DISK OVERLAPPING STACK & PROPPING MECHANICS
+   ========================================================================== */
+
+.floppy-disk-card {
+  position: relative;
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  z-index: var(--disk-z);
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1.15),
+              box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              margin 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+              filter 0.3s ease;
+  user-select: none;
+}
+
+/* ──────────────────────────────────────────────────────────────────────────
+   1. REAL OVERLAPPING STACK (CASCADING DECK)
+   ────────────────────────────────────────────────────────────────────────── */
+/* Inactive disks stack on top of each other, cascading with realistic overlap */
+.floppy-disk-card.is-stacked {
+  cursor: pointer;
+  filter: brightness(0.96);
+  margin-top: -110px; /* Overlaps previous disk, exposing the full hardware header & tab */
+  box-shadow: 0 -10px 28px rgba(45, 25, 30, 0.12),
+              0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.floppy-disk-card.is-stacked:first-child {
+  margin-top: 0;
+}
+
+/* ──────────────────────────────────────────────────────────────────────────
+   2. HOVER MECHANICS (PROPPING / PEEKING LIFT)
+   ────────────────────────────────────────────────────────────────────────── */
+.floppy-disk-card.is-stacked:hover {
+  transform: translateY(-38px) scale(1.012);
+  filter: brightness(1.02);
+  z-index: 45 !important;
+  box-shadow: 0 -24px 48px rgba(50, 25, 35, 0.22),
+              0 10px 24px rgba(0, 0, 0, 0.12),
+              0 0 0 2px rgba(255, 255, 255, 0.6);
+}
+
+.floppy-disk-card.is-stacked:hover .floppy-metal-slider {
+  filter: brightness(1.1);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 1), 0 8px 16px rgba(0, 0, 0, 0.25);
+}
+
+.floppy-disk-card.is-stacked:hover .tab-open-badge {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.floppy-disk-card.is-stacked:hover .tab-status-dot {
+  background-color: #222222;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+/* ──────────────────────────────────────────────────────────────────────────
+   3. ACTIVE PROPPED-UP STATE
+   ────────────────────────────────────────────────────────────────────────── */
+.floppy-disk-card.is-active {
+  cursor: default;
+  margin-top: 28px;
+  margin-bottom: 48px;
+  transform: translateY(0);
+  z-index: 50 !important;
+  filter: brightness(1);
+  box-shadow: 0 24px 60px rgba(55, 30, 40, 0.18),
+              0 8px 20px rgba(0, 0, 0, 0.08),
+              0 0 0 1px rgba(0, 0, 0, 0.12);
+  animation: diskPropUpSpring 0.55s cubic-bezier(0.18, 0.9, 0.25, 1.2);
+}
+
+@keyframes diskPropUpSpring {
+  0% {
+    transform: translateY(-28px) scale(0.98);
+    opacity: 0.9;
+  }
+  60% {
+    transform: translateY(6px) scale(1.008);
+  }
+  100% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+/* ──────────────────────────────────────────────────────────────────────────
+   4. FULL-SIZED FLOPPY SHELL
+   ────────────────────────────────────────────────────────────────────────── */
+.floppy-shell-body {
+  position: relative;
+  background-color: var(--disk-bg);
+  border-radius: 14px;
+  /* Authentic 3.5" floppy disk chamfered top-left cut */
+  clip-path: polygon(
+    48px 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    0% 48px
+  );
+  border: 2px solid rgba(0, 0, 0, 0.15);
+  border-top: 1px solid rgba(255, 255, 255, 0.6);
+  border-left: 1px solid rgba(255, 255, 255, 0.4);
+  padding: 26px 32px 28px 32px;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/* Top-left chamfer bevel highlight */
+.floppy-chamfer-notch {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 48px;
+  height: 48px;
+  pointer-events: none;
+  border-top: 2px solid rgba(255, 255, 255, 0.5);
+}
+
+/* ──────────────────────────────────────────────────────────────────────────
+   5. TOP HARDWARE SECTION (TAB, METAL SLIDER, SPINDLE HUB, GRIP)
+   ────────────────────────────────────────────────────────────────────────── */
+.floppy-top-hardware {
+  display: grid;
+  grid-template-columns: minmax(200px, auto) 1fr auto;
+  align-items: center;
+  gap: 24px;
+  min-height: 120px;
+  position: relative;
+}
+
+/* Left Vertical Tab / Section Title */
+.floppy-left-tab {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 14px 8px 4px;
+  flex-wrap: wrap;
+}
+
+.tab-status-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: rgba(30, 30, 30, 0.4);
+  transition: all 0.25s ease;
+}
+
+.is-active .tab-status-dot {
+  background-color: #177239;
+  box-shadow: 0 0 12px rgba(23, 114, 57, 0.7);
+}
+
+.floppy-tab-title {
+  margin: 0;
+  font-family: 'Space Mono', 'DM Mono', monospace;
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #222222;
+  text-transform: none;
+  white-space: nowrap;
+}
+
+.tab-open-badge {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #333333;
+  background: rgba(255, 255, 255, 0.85);
+  padding: 3px 8px;
+  border-radius: 4px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  opacity: 0;
+  transform: translateY(4px);
+  transition: all 0.25s ease;
+  pointer-events: none;
+}
+
+/* Metal Sliding Shutter (Full Width & Authentic Depth) */
+.floppy-metal-slider {
+  position: relative;
+  max-width: 340px;
+  height: 114px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.metal-shutter-plate {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #f7f7f7 0%, #dedede 45%, #c2c2c2 100%);
+  border: 1px solid #828282;
+  border-radius: 4px 4px 6px 6px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.95), 0 4px 10px rgba(0, 0, 0, 0.18);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.shutter-pin-hole {
+  position: absolute;
+  top: 10px;
+  right: 14px;
+  width: 11px;
+  height: 11px;
+  background-color: rgba(25, 25, 25, 0.35);
+  border-radius: 2px;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.6);
+}
+
+.shutter-media-aperture {
+  width: 86px;
+  height: 74px;
+  background-color: #222222;
+  border-radius: 4px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.magnetic-disk-spindle {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #555555 0%, #222222 65%, #111111 100%);
+  border: 1px solid #404040;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.spindle-hub-center {
+  width: 18px;
+  height: 18px;
+  background-color: #080808;
+  border-radius: 50%;
+  box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.95);
+}
+
+.spindle-notch {
+  position: absolute;
+  top: 6px;
+  width: 7px;
+  height: 10px;
+  background-color: #111111;
+  border-radius: 1px;
+}
+
+.shutter-arrow-label {
+  position: absolute;
+  bottom: 6px;
+  left: 14px;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 700;
+  color: #555555;
+  letter-spacing: 0.06em;
+  opacity: 0.85;
+}
+
+/* Right Tactile Finger Grips */
+.floppy-right-grips {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding-right: 4px;
+}
+
+.grip-bar {
+  width: 30px;
+  height: 3px;
+  background-color: rgba(0, 0, 0, 0.16);
+  border-radius: 2px;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.2), 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+/* ──────────────────────────────────────────────────────────────────────────
+   6. MAIN WINDOW / LABEL AREA
+   ────────────────────────────────────────────────────────────────────────── */
+.floppy-main-window {
+  position: relative;
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  user-select: text;
+}
+
+/* When stacked, the main window collapses smoothly while the floppy disk retains its header depth */
+.is-stacked .floppy-main-window {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  margin-top: 0;
+  pointer-events: none;
+}
+
+/* When active, the main window expands into full interactive view */
+.is-active .floppy-main-window {
+  max-height: 3400px;
+  opacity: 1;
+  overflow: visible;
+  margin-top: 24px;
+  pointer-events: auto;
+}
+
+.floppy-window-inner {
+  padding-top: 4px;
+}
+
+/* ──────────────────────────────────────────────────────────────────────────
+   7. FOOTER LABEL STICKER
+   ────────────────────────────────────────────────────────────────────────── */
+.floppy-footer-label {
+  margin-top: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.floppy-sticker-strip {
+  flex: 1;
+  background-color: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.14);
+  border-radius: 4px;
+  padding: 10px 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+  font-family: 'Space Mono', monospace;
+  font-size: 0.84rem;
+  color: #333333;
+}
+
+.sticker-meta-left {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.sticker-title {
+  font-weight: 700;
+  color: #1a1a1a;
+}
+
+.sticker-specs {
+  font-size: 0.76rem;
+  color: #666666;
+}
+
+.sticker-serial-number {
+  font-weight: 700;
+  color: #3b3b3b;
+  letter-spacing: 0.04em;
+}
+
+.write-protect-window {
+  width: 15px;
+  height: 15px;
+  background-color: #222222;
+  border-radius: 2px;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.7);
+}
+
+/* ──────────────────────────────────────────────────────────────────────────
+   8. RESPONSIVE MOBILE ADJUSTMENTS
+   ────────────────────────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .floppy-shell-body {
+    padding: 20px 18px 22px 18px;
+    clip-path: polygon(
+      32px 0%,
+      100% 0%,
+      100% 100%,
+      0% 100%,
+      0% 32px
+    );
+  }
+
+  .floppy-disk-card.is-stacked {
+    margin-top: -95px;
+  }
+
+  .floppy-top-hardware {
+    grid-template-columns: 1fr auto;
+    min-height: 90px;
+    gap: 14px;
+  }
+
+  .floppy-metal-slider {
+    max-width: 200px;
+    height: 86px;
+  }
+
+  .floppy-tab-title {
+    font-size: 1.15rem;
+  }
+
+  .floppy-right-grips {
+    display: none;
+  }
+
+  .floppy-sticker-strip {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    font-size: 0.74rem;
+  }
+}
