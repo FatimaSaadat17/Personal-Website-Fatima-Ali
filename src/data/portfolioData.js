@@ -5,7 +5,7 @@ export const portfolioData = {
     year: "2nd Year Student",
     university: "University of Birmingham Dubai",
     location: "Dubai, UAE",
-    tagline: "Exploring Machine Learining and Data Science in Cheminformatics, Bioinformatics, Quantitative Analysis, Computer Vision.",
+    tagline: "Exploring Machine Learning and Data Science in Cheminformatics, Bioinformatics, Quantitative Analysis, Computer Vision.",
     bio: [
       "Hi there! I'm a Computer Science student at University of Birmingham Dubai with a passion for learning Data Science and ML and applying them to solve real-world problems",
       "My current targets for research focus on using Graph Neural Networks to model relationships in data, and combining both RNNs and GNNs to get more powerful models like Spatio-temporal GNNs, I am also expanding knowledge on how current LLMs are powered (: "
