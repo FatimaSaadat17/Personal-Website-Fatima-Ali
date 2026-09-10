@@ -61,7 +61,7 @@ export default function AboutSection() {
             <div className="focus-indicator" style={{ background: '#97D2D9' }} />
             <div>
               <strong>GitHub</strong>
-              <p>https://github.com/FatimaSaadat17</p>
+              <a href="https://github.com/FatimaSaadat17">https://github.com/FatimaSaadat17</a>
             </div>
           </div>
 
@@ -69,7 +69,7 @@ export default function AboutSection() {
             <div className="focus-indicator" style={{ background: '#EFC96A' }} />
             <div>
               <strong>LinkedIn</strong>
-              <p>https://linkedin.com</p>
+              <a href="https://linkedin.com">https://linkedin.com</a>
             </div>
           </div>
 
@@ -85,7 +85,21 @@ export default function AboutSection() {
             <div className="focus-indicator" style={{ background: '#9f82d9' }} />
             <div>
               <strong>Hyperfixations</strong>
-              <p>3D Printing, Journaling, Statistics</p>
+              <p>3D Printing, Journaling with Hobonichis and Buying useless trinkets I'll definetly never end up using ;0 </p>
+            </div>
+          </div>
+
+          
+          <div className="focus-item">
+            <div className="focus-indicator" style={{ background: '#637d69' }} />
+            <div>
+              <strong>Work Experience</strong>
+              <ul>
+                  <li>AI Engineer at NectarSearch.ae</li>
+                  <li>Co-lead at UoBD Computing Club</li>
+                  <li>Outreach Officer at ACM UoBD</li>
+                  <li>Founding Engineer at Murtabit</li>
+              </ul>
             </div>
           </div>
           
