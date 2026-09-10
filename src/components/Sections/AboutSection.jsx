@@ -95,10 +95,10 @@ export default function AboutSection() {
             <div>
               <strong>Work Experience</strong>
               <ul>
-                  <li>AI Engineer at NectarSearch.ae</li>
-                  <li>Co-lead at UoBD Computing Club</li>
-                  <li>Outreach Officer at ACM UoBD</li>
-                  <li>Founding Engineer at Murtabit</li>
+                  <li>AI Engineer at NectarSearch.ae (Aug 2026 - Sep 2026)</li>
+                  <li>Co-lead at UoBD Computing Club (Sep 2026 - Present)</li>
+                  <li>Outreach Officer at ACM UoBD (Sep 2026 - Present)</li>
+                  <li>Founding Engineer at Murtabit (June 2026 - Present)</li>
               </ul>
             </div>
           </div>
