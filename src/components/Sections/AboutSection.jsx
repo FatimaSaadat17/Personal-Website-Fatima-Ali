@@ -69,7 +69,7 @@ export default function AboutSection() {
             <div className="focus-indicator" style={{ background: '#EFC96A' }} />
             <div>
               <strong>LinkedIn</strong>
-              <a href="https://linkedin.com">https://linkedin.com</a>
+              <a href="www.linkedin.com/in/fatima-ali-029916390">https://linkedin.com</a>
             </div>
           </div>
 
