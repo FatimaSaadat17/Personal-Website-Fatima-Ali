@@ -77,7 +77,15 @@ export default function AboutSection() {
             <div className="focus-indicator" style={{ background: '#D98296' }} />
             <div>
               <strong>Email</strong>
-              <p>fsaadat917@proton.me   fsaadat917@gmail.com   fsa463@student.bham.ac.uk</p>
+              <p>fsaadat917@proton.me</p>
+            </div>
+          </div>
+
+          <div className="focus-item">
+            <div className="focus-indicator" style={{ background: '#dec9c8' }} />
+            <div>
+              <strong>Resume</strong>
+              <a href="https://wild-wind-371.linkyhost.com">check it out -></a>
             </div>
           </div>
 
