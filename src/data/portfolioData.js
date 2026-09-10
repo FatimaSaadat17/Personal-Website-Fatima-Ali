@@ -103,14 +103,14 @@ export const portfolioData = {
       color: "#EFC96A"
     },
     {
-      id: "weather-app",
-      title: "Modern Weather Dashboard",
+      id: "masar-app",
+      title: "ML Traffic Prediction System (MASAR)",
       category: "Full Stack App",
-      badge: "Web App",
-      description: "Interactive real-time weather application featuring dynamic SVG weather conditions, forecast maps, and atmospheric metrics with clean responsive UI.",
-      tags: ["JavaScript", "Node.js", "Express", "Weather API", "CSS Grid"],
+      badge: "Mobile App",
+      description: "LSTM-based forecasting model using historical traffic datasets to identify recurring congestion windows and dynamically optimize routing and pickup scheduling.",
+      tags: ["RNN", "AI & ML", "App dev", "Hackathon", "LSTM"],
       links: {
-        code: "https://github.com/FatimaSaadat17/Weather-App.git"
+        paper: "https://canva.link/u65c6mz74b4daa7"
       },
       color: "#BBD89E"
     },
