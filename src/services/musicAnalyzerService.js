@@ -54,12 +54,6 @@ export async function analyzeMusicTaste({ songs, name }) {
       if (json.success && json.data) {
         return { success: true, data: json.data };
       }
-    } else {
-      const errJson = await res.json().catch(() => ({}));
-      return {
-        success: false,
-        error: errJson.error || `Analyzer responded with ${res.status}.`
-      };
     }
   } catch (err) {
     // Both network calls failed
