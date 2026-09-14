@@ -187,9 +187,9 @@ app.delete('/api/greetings/:id', async (req, res) => {
 // ------------------------------------------------------------------
 // Music Taste Analyzer — Multi-tier AI Engine (Vercel Serverless)
 // ------------------------------------------------------------------
-// Tier 1: Local / Tunnel Hermes Docker Agent (OpenAI-compatible)
-// Tier 2: Direct Google Gemini API (gemini-flash-lite-latest)
-// Tier 3: Built-in Sonic Personality Matrix (zero failure rate)
+// Tier 1: Hermes Docker Agent API (local or tunneled)
+// Tier 2: Direct Google Gemini API (remote — works on Vercel)
+// No canned fallback — both tiers must generate fresh, original analysis.
 // ------------------------------------------------------------------
 
 const SYSTEM_MUSIC_PROMPT = `
@@ -445,74 +445,6 @@ async function callGeminiDirectApi({ songs, name }) {
   }
 }
 
-// Tier 3: Built-in Sonic Personality Matrix (Deterministic Heuristic Engine)
-function generateHeuristicPersonality(songs, name) {
-  const archetypes = [
-    {
-      type: 'The 2AM Ceiling Stare Specialist',
-      traits: ['Soulful', 'A24 aesthetic', 'Cries in Uber rides', 'Weaponized nostalgia'],
-      percentages: [
-        { label: 'A24 Sadness Lifestyle', value: 45 },
-        { label: 'Late Night Overthinking', value: 35 },
-        { label: 'Secret Romantic', value: 20 }
-      ],
-      summary: 'Oh, wow, you definitely love being performative on the aux! Your tracks are so atmospheric and melodramatic that you treat every minor life event like the emotional climax of an indie film.'
-    },
-    {
-      type: 'The Performative Aux Dictator',
-      traits: ['Eclectic', 'Curious', 'High-Energy', 'Unfiltered'],
-      percentages: [
-        { label: 'Aux Hijacking Urge', value: 50 },
-        { label: 'Chaotic Genre Jumping', value: 30 },
-        { label: 'Dopamine Chasing', value: 20 }
-      ],
-      summary: 'You refuse to let anyone else touch the aux because you have convinced yourself only your curated vibe can save the room. We get it, you are eclectic—now please let a song play past the 90-second mark!'
-    },
-    {
-      type: 'The Unrecovered Emo Elite',
-      traits: ['Side-swept bangs in spirit', 'Weaponized nostalgia', 'Eyes-closed screaming in car', 'Dramatic'],
-      percentages: [
-        { label: 'Eyeliner Smudge Factor', value: 45 },
-        { label: 'Undying 2006 Nostalgia', value: 35 },
-        { label: 'Emotional Release', value: 20 }
-      ],
-      summary: 'Wow, you are so deeply emo! You treat minor inconveniences like an acoustic breakdown and probably still believe marching band drums are a direct attack on your soul.'
-    },
-    {
-      type: 'The Pretentious Sound Architect',
-      traits: ['Analytical', 'Visionary', 'Polyrhythm fan', 'Headphone snob'],
-      percentages: [
-        { label: 'Audio Snobbery', value: 40 },
-        { label: 'Over-analyzing Mixing', value: 35 },
-        { label: 'Earbud Disdain', value: 25 }
-      ],
-      summary: 'You do not just listen to music—you judge the panning, mixing, and frequency balance. You probably tell people they need lossless FLAC files to truly understand your aesthetic.'
-    },
-    {
-      type: 'The Shoegaze Reverb Addict',
-      traits: ['Reverb dependent', 'Cannot hear lyrics', 'Vintage camera owner', 'Distant gaze'],
-      percentages: [
-        { label: 'Guitar Pedal Distortion', value: 50 },
-        { label: 'Sensory Deprivation Need', value: 30 },
-        { label: 'Cloudy Day Energy', value: 20 }
-      ],
-      summary: 'You treat the aux cord like a sensory deprivation tank where lyrics are entirely optional and emotional overwhelm is the primary aesthetic. Laying on the floor while guitar pedals swallow you whole is your default mode.'
-    }
-  ];
-
-  const seed = songs.join(' ').toLowerCase().split('').reduce((acc, c) => acc + c.charCodeAt(0), 0);
-  const picked = archetypes[seed % archetypes.length];
-
-  const prefix = name ? `For ${name}: ` : '';
-
-  return {
-    personalityType: picked.type,
-    traits: picked.traits,
-    percentages: picked.percentages,
-    summary: `${prefix}${picked.summary}`
-  };
-}
-
 app.post('/api/music-analyze', async (req, res) => {
   const { songs, name } = req.body || {};
 
@@ -537,7 +469,7 @@ app.post('/api/music-analyze', async (req, res) => {
 
   const cleanName = typeof name === 'string' ? name.slice(0, 60) : '';
 
-  // Attempt 1: Hermes Docker Agent API
+  // Attempt 1: Hermes Docker Agent API (works locally or via tunnel)
   try {
     const analysis = await callHermesAgentApi({ songs: cleanedSongs, name: cleanName });
     if (analysis?.personalityType) {
@@ -554,10 +486,10 @@ app.post('/api/music-analyze', async (req, res) => {
       });
     }
   } catch (err1) {
-    // Hermes agent offline / unreachable
+    // Hermes agent offline / unreachable — fall through to Gemini
   }
 
-  // Attempt 2: Direct Google Gemini API
+  // Attempt 2: Direct Google Gemini API (remote — works on Vercel with GEMINI_API_KEY)
   try {
     const analysis = await callGeminiDirectApi({ songs: cleanedSongs, name: cleanName });
     if (analysis?.personalityType) {
@@ -574,21 +506,14 @@ app.post('/api/music-analyze', async (req, res) => {
       });
     }
   } catch (err2) {
-    // Direct Gemini key absent or call failed
+    // Gemini key absent or call failed
   }
 
-  // Attempt 3: Built-in Sonic Matrix (zero downtime guarantee)
-  const analysis = generateHeuristicPersonality(cleanedSongs, cleanName);
-  return res.json({
-    success: true,
-    source: 'sonic-matrix',
-    data: {
-      songs: cleanedSongs,
-      personalityType: analysis.personalityType,
-      traits: analysis.traits,
-      percentages: analysis.percentages,
-      summary: analysis.summary
-    }
+  // NO CANNED FALLBACK — return an honest error so the frontend can tell the user.
+  // The whole point is that the analysis is AI-generated, not picked from a preset list.
+  return res.status(503).json({
+    success: false,
+    error: 'AI music analyzer is currently offline. Please try again in a moment!'
   });
 });
 

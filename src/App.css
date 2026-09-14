@@ -815,7 +815,7 @@
 .music-analyzer-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 24px;
+  gap: 18px;
   align-items: start;
 }
 
@@ -824,10 +824,12 @@
   background: #fafafa;
   border: 1px solid #eaeaea;
   border-radius: 6px;
-  padding: 18px;
+  padding: 16px;
   display: flex;
   flex-direction: column;
   min-height: 0;
+  max-height: 600px;
+  overflow: hidden;
 }
 
 .music-card-header,
@@ -835,10 +837,11 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 14px;
-  padding-bottom: 10px;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
   border-bottom: 1px dashed #e0e0e0;
-  min-height: 36px;
+  min-height: 32px;
+  flex-shrink: 0;
 }
 
 .track-counter {
@@ -870,11 +873,12 @@
   align-items: center;
   gap: 6px;
   flex-wrap: wrap;
-  margin-bottom: 14px;
-  padding: 8px 10px;
+  margin-bottom: 10px;
+  padding: 6px 10px;
   background: #ffffff;
   border: 1px solid #ebebeb;
   border-radius: 4px;
+  flex-shrink: 0;
 }
 
 .preset-label {
@@ -910,13 +914,18 @@
 .music-form {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
+  overflow-y: auto;
+  flex: 1;
+  min-height: 0;
+  scrollbar-width: thin;
+  scrollbar-color: #d4bee8 #f3ebfa;
 }
 
 .songs-inputs-group {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
 }
 
 .song-input-row {
@@ -931,11 +940,11 @@
   font-weight: 700;
   color: #888888;
   background: #ececec;
-  padding: 8px 12px;
+  padding: 6px 10px;
   border-radius: 4px;
   border: 1px solid #dddddd;
   user-select: none;
-  min-width: 52px;
+  min-width: 44px;
   text-align: center;
   flex-shrink: 0;
 }
@@ -949,7 +958,8 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  margin-top: 6px;
+  margin-top: 4px;
+  flex-shrink: 0;
 }
 
 .submit-analyze-btn {
@@ -1010,8 +1020,9 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 30px 16px;
+  padding: 20px 16px;
   color: #777777;
+  min-height: 0;
 }
 
 .retro-spinner {
@@ -1175,8 +1186,13 @@
 .music-analysis-result {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 14px;
   animation: fade-in-up 0.3s ease;
+  overflow-y: auto;
+  flex: 1;
+  min-height: 0;
+  scrollbar-width: thin;
+  scrollbar-color: #d4bee8 #f3ebfa;
 }
 
 @keyframes fade-in-up {
@@ -1188,8 +1204,9 @@
   background: linear-gradient(135deg, #f3ebfa 0%, #e7d8f5 100%);
   border: 1px solid #d4bee8;
   border-radius: 6px;
-  padding: 14px;
+  padding: 12px;
   text-align: center;
+  flex-shrink: 0;
 }
 
 .archetype-kicker {
@@ -1204,17 +1221,19 @@
 
 .archetype-title {
   font-family: var(--font-mono);
-  font-size: 1.15rem;
+  font-size: 1.05rem;
   font-weight: 700;
   color: #2b0f4a;
   letter-spacing: -0.01em;
+  word-break: break-word;
 }
 
 .traits-section,
 .summary-section {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
+  flex-shrink: 0;
 }
 
 .traits-label,
@@ -1239,9 +1258,9 @@
   background: #ffffff;
   border: 1px solid #e2d7ed;
   border-radius: 4px;
-  padding: 8px 10px;
+  padding: 6px 10px;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 6px;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
 }
@@ -1255,33 +1274,39 @@
 
 .trait-name {
   font-family: var(--font-mono);
-  font-size: 0.8rem;
+  font-size: 0.72rem;
   font-weight: 700;
   color: #333333;
+  line-height: 1.4;
 }
 
 .summary-section {
   background: #ffffff;
   border: 1px solid #ebebeb;
   border-radius: 6px;
-  padding: 12px;
+  padding: 10px;
 }
 
 .summary-text {
-  font-size: 0.86rem;
-  line-height: 1.55;
+  font-size: 0.82rem;
+  line-height: 1.5;
   color: #3b3b3b;
+  display: -webkit-box;
+  -webkit-line-clamp: 6;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 /* Percentage & Vibe Breakdown */
 .percentages-section {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 8px;
   background: #ffffff;
   border: 1px solid #ebebeb;
   border-radius: 6px;
-  padding: 12px;
+  padding: 10px;
+  flex-shrink: 0;
 }
 
 .percentages-label {
@@ -1326,7 +1351,7 @@
 
 .percentage-bar-track {
   width: 100%;
-  height: 8px;
+  height: 6px;
   background: #f0edf4;
   border-radius: 4px;
   overflow: hidden;
