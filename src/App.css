@@ -1291,10 +1291,10 @@
   font-size: 0.82rem;
   line-height: 1.5;
   color: #3b3b3b;
-  display: -webkit-box;
-  -webkit-line-clamp: 6;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
+  max-height: 120px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #d4bee8 #f3ebfa;
 }
 
 /* Percentage & Vibe Breakdown */
