@@ -89,7 +89,7 @@ export default function MusicTasteAnalyzerSection() {
         <div>
           <h2 className="section-title">Music Taste Analyzer</h2>
           <p className="section-desc">
-            Feed this floppy disk 5 of your favourite tracks. Our Hermes AI agent decodes your acoustic DNA to reveal your personality archetype, dominant traits, and sonic summary.
+            Feed this floppy disk 5 of your favourite tracks. Our Hermes AI agent generates a completely original personality analysis — fresh every time, built from your specific song choices. No presets, no templates, just your acoustic DNA decoded from scratch.
           </p>
         </div>
       </div>
@@ -185,7 +185,7 @@ export default function MusicTasteAnalyzerSection() {
               <Sparkles size={16} /> PERSONALITY ARCHETYPE
             </h3>
             <span className={`analysis-badge ${result ? 'decoded' : 'awaiting'}`}>
-              {result ? 'HERMES AGENT DECODED' : 'AWAITING INPUT'}
+              {result ? 'AI-GENERATED ANALYSIS' : 'AWAITING INPUT'}
             </span>
           </div>
 
@@ -194,8 +194,8 @@ export default function MusicTasteAnalyzerSection() {
               <div className="retro-spinner">
                 <Disc3 size={40} className="spinning-disc" />
               </div>
-              <p className="loading-text">Hermes is analyzing your soundscape harmonics...</p>
-              <span className="loading-subtext">Evaluating tempo, lyrics themes, and emotional cadence</span>
+              <p className="loading-text">Generating your unique sonic personality analysis...</p>
+              <span className="loading-subtext">AI is evaluating your specific track choices, artists, and listening habits</span>
             </div>
           )}
 
