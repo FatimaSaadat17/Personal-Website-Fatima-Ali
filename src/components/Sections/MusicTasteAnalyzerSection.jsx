@@ -8,7 +8,8 @@ import {
   User,
   RotateCcw,
   AlertCircle,
-  HelpCircle,
+  Activity,
+  BarChart3,
   Wand2
 } from 'lucide-react';
 
@@ -18,6 +19,8 @@ const PRESET_TRACKS = [
   ['Deftones - Rosemary', 'Slowdive - Alison', 'Cocteau Twins - Cherry-coloured Funk', 'My Bloody Valentine - When You Sleep', 'Whirr - Flashbacks'],
   ['Chopin - Nocturne Op.9 No.2', 'Debussy - Clair de Lune', 'Max Richter - On the Nature of Daylight', 'Ludovico Einaudi - Nuvole Bianche', 'Ravel - Pavane']
 ];
+
+const METER_COLORS = ['#b692d4', '#da91a3', '#f3cf73', '#97d2d9', '#c6ddaa'];
 
 export default function MusicTasteAnalyzerSection() {
   const [name, setName] = useState('');
@@ -237,15 +240,37 @@ export default function MusicTasteAnalyzerSection() {
                 <p className="summary-text">{result.summary}</p>
               </div>
 
-              {/* Analyzed Tracklist Footnote */}
-              <div className="analyzed-tracks-list">
-                <span className="tracks-footnote-title">Tracks in this reading:</span>
-                <ul>
-                  {(result.songs || []).map((s, idx) => (
-                    <li key={idx}>0{idx + 1}. {s}</li>
-                  ))}
-                </ul>
-              </div>
+              {/* Vibe & Personality Percentage Breakdown */}
+              {Array.isArray(result.percentages) && result.percentages.length > 0 && (
+                <div className="percentages-section">
+                  <span className="percentages-label">
+                    <BarChart3 size={13} /> VIBE & PERSONALITY SPECTRUM
+                  </span>
+                  <div className="percentages-list">
+                    {result.percentages.map((item, idx) => {
+                      const color = METER_COLORS[idx % METER_COLORS.length];
+                      const val = Math.min(100, Math.max(0, Number(item.value) || 0));
+                      return (
+                        <div key={idx} className="percentage-row">
+                          <div className="percentage-meta">
+                            <span className="percentage-name">{item.label}</span>
+                            <span className="percentage-val" style={{ color }}>{val}%</span>
+                          </div>
+                          <div className="percentage-bar-track">
+                            <div
+                              className="percentage-bar-fill"
+                              style={{
+                                width: `${val}%`,
+                                backgroundColor: color
+                              }}
+                            />
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
             </div>
           )}
         </div>

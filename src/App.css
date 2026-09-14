@@ -1164,29 +1164,70 @@
   color: #3b3b3b;
 }
 
-.analyzed-tracks-list {
-  background: #f4f4f4;
-  border-radius: 4px;
-  padding: 8px 12px;
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  color: #777777;
-}
-
-.tracks-footnote-title {
-  display: block;
-  font-weight: 700;
-  margin-bottom: 4px;
-  color: #555555;
-}
-
-.analyzed-tracks-list ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+/* Percentage & Vibe Breakdown */
+.percentages-section {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 10px;
+  background: #ffffff;
+  border: 1px solid #ebebeb;
+  border-radius: 6px;
+  padding: 12px;
+}
+
+.percentages-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: #555555;
+  letter-spacing: 0.04em;
+}
+
+.percentages-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.percentage-row {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.percentage-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+}
+
+.percentage-name {
+  font-weight: 600;
+  color: #333333;
+}
+
+.percentage-val {
+  font-weight: 700;
+}
+
+.percentage-bar-track {
+  width: 100%;
+  height: 8px;
+  background: #f0edf4;
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.percentage-bar-fill {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 @media (max-width: 768px) {

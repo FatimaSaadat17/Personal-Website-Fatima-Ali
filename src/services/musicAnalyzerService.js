@@ -72,21 +72,68 @@ export async function analyzeMusicTaste({ songs, name }) {
  */
 function generateOfflineAnalysis(songs, name) {
   const types = [
-    { type: 'INFP — The Sonic Dreamer', traits: ['Introspective', 'Poetic', 'Atmospheric', 'Empathetic'], desc: 'You lean toward music that evokes deep feelings and world-building atmospheres.' },
-    { type: 'ENFP — The Genre Voyager', traits: ['Curious', 'Eclectic', 'High-Energy', 'Vibrant'], desc: 'Your playlist defies borders; you collect gems from every corner of sound.' },
-    { type: 'INTJ — The Sound Architect', traits: ['Analytical', 'Structured', 'Visionary', 'Methodical'], desc: 'You appreciate crisp production, intricate rhythms, and visionary composition.' },
-    { type: 'ISFP — The Melodic Soul', traits: ['Authentic', 'Heartfelt', 'Expressive', 'Grounded'], desc: 'For you, music is purely emotional truth and tactile texture.' }
+    {
+      type: 'INFP — The Ethereal Dreamer',
+      traits: ['Introspective', 'Poetic', 'Atmospheric', 'Overthinking'],
+      percentages: [
+        { label: 'Performative Melodrama', value: 45 },
+        { label: 'Main Character Energy', value: 35 },
+        { label: 'Nostalgia Factor', value: 20 }
+      ],
+      desc: 'Oh, wow, you definitely love staring out rain-streaked windows pretending you are the tragic protagonist in an indie movie.'
+    },
+    {
+      type: 'ENFP — The Performative Aux Dictator',
+      traits: ['Eclectic', 'Curious', 'High-Energy', 'Unfiltered'],
+      percentages: [
+        { label: 'Aux Hijacking Urge', value: 50 },
+        { label: 'Chaotic Genre Jumping', value: 30 },
+        { label: 'Dopamine Chasing', value: 20 }
+      ],
+      desc: 'You refuse to let anyone else touch the aux because you have convinced yourself only your curated vibe can save the room.'
+    },
+    {
+      type: 'ISFP — The Unrecovered Emo Elite',
+      traits: ['Side-swept bangs at heart', 'Weaponized nostalgia', 'Vulnerable', 'Dramatic'],
+      percentages: [
+        { label: 'Eyeliner Smudge Factor', value: 45 },
+        { label: 'Undying 2006 Nostalgia', value: 35 },
+        { label: 'Emotional Release', value: 20 }
+      ],
+      desc: 'Wow, you are so deeply emo! You treat minor inconveniences like an acoustic breakdown and probably still consider marching band drums a personal attack.'
+    },
+    {
+      type: 'INTJ — The Pretentious Sound Architect',
+      traits: ['Analytical', 'Visionary', 'Polyrhythm fan', 'Headphone snob'],
+      percentages: [
+        { label: 'Audio Snobbery', value: 40 },
+        { label: 'Over-analyzing Mixing', value: 35 },
+        { label: 'Earbud Disdain', value: 25 }
+      ],
+      desc: 'You do not just listen to music—you judge the panning, mixing, and frequency balance. You probably tell people they need lossless FLAC files.'
+    },
+    {
+      type: 'INFJ — The 2AM Ceiling Stare Specialist',
+      traits: ['Soulful', 'A24 aesthetic', 'Quiet intensity', 'Deep thinker'],
+      percentages: [
+        { label: 'A24 Sadness Lifestyle', value: 50 },
+        { label: 'Late Night Overthinking', value: 30 },
+        { label: 'Secret Romantic', value: 20 }
+      ],
+      desc: 'Oh, so sadness is a full-time aesthetic now? Your music selections are so moody that your houseplants are asking for therapy.'
+    }
   ];
 
   // Deterministic pick based on song string hash
   const hash = songs.join('').split('').reduce((acc, c) => acc + c.charCodeAt(0), 0);
   const picked = types[hash % types.length];
 
-  const prefix = name ? `${name}'s playlist reveals a keen ear for atmosphere.` : 'Your playlist reveals a keen ear for atmosphere.';
+  const prefix = name ? `For ${name}: ` : '';
   return {
     songs,
     personalityType: picked.type,
     traits: picked.traits,
-    summary: `${prefix} ${picked.desc} (Generated locally via offline audio heuristic)`
+    percentages: picked.percentages,
+    summary: `${prefix}${picked.desc}`
   };
 }
