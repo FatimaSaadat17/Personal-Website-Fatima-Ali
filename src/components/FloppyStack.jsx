@@ -4,9 +4,17 @@ import AboutSection from './Sections/AboutSection';
 import ProjectsSection from './Sections/ProjectsSection';
 import SkillsSection from './Sections/SkillsSection';
 import GreetingsSection from './Sections/GreetingsSection';
+import MusicTasteAnalyzerSection from './Sections/MusicTasteAnalyzerSection';
 
 export default function FloppyStack({ activeTab, onSelectTab }) {
   const disks = [
+    {
+      id: 'music',
+      title: 'Music Taste Analyzer',
+      color: '#b692d4',
+      sn: 'S/N 442211889',
+      component: <MusicTasteAnalyzerSection />
+    },
     {
       id: 'greetings',
       title: 'Send a Greeting!',

@@ -61,7 +61,7 @@ export default function AboutSection() {
             <div className="focus-indicator" style={{ background: '#97D2D9' }} />
             <div>
               <strong>GitHub</strong>
-              <a href="https://github.com/FatimaSaadat17">https://github.com/FatimaSaadat17</a>
+              <a href="https://github.com/FatimaSaadat17" target="_blank" rel="noreferrer">https://github.com/FatimaSaadat17</a>
             </div>
           </div>
 
@@ -69,7 +69,7 @@ export default function AboutSection() {
             <div className="focus-indicator" style={{ background: '#EFC96A' }} />
             <div>
               <strong>LinkedIn</strong>
-              <a href="www.linkedin.com/in/fatima-ali-029916390">www.linkedin.com/in/fatima-ali-029916390</a>
+              <a href="https://www.linkedin.com/in/fatima-ali-029916390" target="_blank" rel="noreferrer">www.linkedin.com/in/fatima-ali-029916390</a>
             </div>
           </div>
 
@@ -85,7 +85,7 @@ export default function AboutSection() {
             <div className="focus-indicator" style={{ background: '#dec9c8' }} />
             <div>
               <strong>Resume</strong>
-              <a href="https://wild-wind-371.linkyhost.com">check it out -></a>
+              <a href="https://wild-wind-371.linkyhost.com" target="_blank" rel="noreferrer">{'check it out ->'}</a>
             </div>
           </div>
 

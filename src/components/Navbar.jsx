@@ -6,7 +6,8 @@ export default function Navbar({ activeTab, onSelectTab }) {
     { id: 'about', label: 'About me <3', color: '#c6ddaa' },
     { id: 'projects', label: 'Projects', color: '#aad9dd' },
     { id: 'skills', label: 'Skills', color: '#f3cf73' },
-    { id: 'greetings', label: 'Send a Greeting!', color: '#da91a3' }
+    { id: 'greetings', label: 'Send a Greeting!', color: '#da91a3' },
+    { id: 'music', label: 'Music Taste Analyzer', color: '#b692d4' }
   ];
 
   return (
