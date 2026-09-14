@@ -184,7 +184,9 @@ export default function MusicTasteAnalyzerSection() {
             <h3 className="card-subtitle">
               <Sparkles size={16} /> PERSONALITY ARCHETYPE
             </h3>
-            {result && <span className="ai-badge">HERMES AGENT DECODED</span>}
+            <span className={`analysis-badge ${result ? 'decoded' : 'awaiting'}`}>
+              {result ? 'HERMES AGENT DECODED' : 'AWAITING INPUT'}
+            </span>
           </div>
 
           {status.loading && (
@@ -199,12 +201,15 @@ export default function MusicTasteAnalyzerSection() {
 
           {!status.loading && !result && (
             <div className="music-empty-state">
-              <div className="empty-disc-icon">
-                <Music size={44} />
+              <div className="empty-turntable">
+                <div className="turntable-platter">
+                  <div className="turntable-spindle" />
+                </div>
+                <div className="turntable-tonearm" />
               </div>
-              <h4 className="empty-title">Awaiting Track Input</h4>
+              <h4 className="empty-title">Insert Disk to Begin</h4>
               <p className="empty-desc">
-                Fill in 5 of your favourite songs on the left (or click one of the quick presets) and click <strong>ANALYZE MY TASTE</strong> to generate your musical personality reading.
+                Fill in your 5 favorite tracks on the left, or click a quick preset, then hit <strong>ANALYZE MY TASTE</strong>.
               </p>
             </div>
           )}

@@ -814,8 +814,9 @@
    ────────────────────────────────────────────────────────────────────────── */
 .music-analyzer-grid {
   display: grid;
-  grid-template-columns: 1.15fr 1fr;
+  grid-template-columns: 1fr 1fr;
   gap: 24px;
+  align-items: start;
 }
 
 .music-form-card,
@@ -826,6 +827,7 @@
   padding: 18px;
   display: flex;
   flex-direction: column;
+  min-height: 0;
 }
 
 .music-card-header,
@@ -836,6 +838,7 @@
   margin-bottom: 14px;
   padding-bottom: 10px;
   border-bottom: 1px dashed #e0e0e0;
+  min-height: 36px;
 }
 
 .track-counter {
@@ -928,14 +931,18 @@
   font-weight: 700;
   color: #888888;
   background: #ececec;
-  padding: 6px 8px;
+  padding: 8px 12px;
   border-radius: 4px;
   border: 1px solid #dddddd;
   user-select: none;
+  min-width: 52px;
+  text-align: center;
+  flex-shrink: 0;
 }
 
 .song-input {
   flex: 1;
+  min-width: 0;
 }
 
 .music-form-actions {
@@ -1034,17 +1041,78 @@
   color: #888888;
 }
 
-.empty-disc-icon {
-  width: 72px;
-  height: 72px;
+/* Turntable Empty State */
+.empty-turntable {
+  position: relative;
+  width: 88px;
+  height: 88px;
+  margin: 0 auto 16px;
+  transform: rotate(-2deg);
+}
+
+.turntable-platter {
+  width: 88px;
+  height: 88px;
   border-radius: 50%;
-  background: #f0ebf8;
+  background: radial-gradient(circle at center, #2a2a2a 0%, #141414 60%, #080808 100%);
+  border: 3px solid #1e1e1e;
+  box-shadow: 
+    inset 0 2px 4px rgba(255,255,255,0.05),
+    inset 0 -2px 4px rgba(0,0,0,0.5),
+    0 8px 24px rgba(0,0,0,0.3);
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #8f5ebb;
-  margin-bottom: 14px;
-  border: 1px dashed #ccafe8;
+  animation: subtle-wobble 4s ease-in-out infinite;
+}
+
+@keyframes subtle-wobble {
+  0%, 100% { transform: rotate(-0.3deg); }
+  50% { transform: rotate(0.3deg); }
+}
+
+.turntable-spindle {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, #4a4a4a 0%, #1a1a1a 70%, #0a0a0a 100%);
+  border: 1px solid #0d0d0d;
+  box-shadow: 
+    inset 0 1px 2px rgba(255,255,255,0.1),
+    0 1px 3px rgba(0,0,0,0.5);
+}
+
+.turntable-tonearm {
+  position: absolute;
+  top: -8px;
+  right: -20px;
+  width: 52px;
+  height: 8px;
+  background: linear-gradient(90deg, #2d2d2d, #1a1a1a);
+  border-radius: 4px;
+  transform-origin: right center;
+  transform: rotate(25deg);
+  box-shadow: 0 3px 8px rgba(0,0,0,0.4);
+}
+
+.turntable-tonearm::before {
+  content: '';
+  position: absolute;
+  right: 4px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, #b692d4 0%, #5a3d7a 100%);
+  box-shadow: 0 0 8px #b692d4, 0 0 16px #b692d4;
+  animation: tonearm-glow 2s ease-in-out infinite;
+}
+
+@keyframes tonearm-glow {
+  0%, 100% { opacity: 0.6; transform: translateY(-50%) scale(1); }
+  50% { opacity: 1; transform: translateY(-50%) scale(1.15); }
 }
 
 .empty-title {
@@ -1053,6 +1121,7 @@
   font-weight: 700;
   color: #333333;
   margin-bottom: 6px;
+  text-align: center;
 }
 
 .empty-desc {
@@ -1060,6 +1129,46 @@
   line-height: 1.5;
   color: #666666;
   max-width: 320px;
+  text-align: center;
+  margin: 0 auto;
+}
+
+/* Result Card Badge */
+.analysis-badge {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 10px;
+  border: 1px solid;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  transition: all 0.2s ease;
+}
+
+.analysis-badge:has-text("DECODED") {
+  background: #e6f4ea;
+  color: #137333;
+  border-color: #ceead6;
+}
+
+.analysis-badge:has-text("AWAITING") {
+  background: #fce8e6;
+  color: #c5221f;
+  border-color: #fad2cf;
+}
+
+/* Fallback for :has-text (not widely supported) - use class-based approach instead */
+.analysis-badge.decoded {
+  background: #e6f4ea;
+  color: #137333;
+  border-color: #ceead6;
+}
+
+.analysis-badge.awaiting {
+  background: #fce8e6;
+  color: #c5221f;
+  border-color: #fad2cf;
 }
 
 /* Result Card Presentation */
