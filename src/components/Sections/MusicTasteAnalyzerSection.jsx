@@ -89,7 +89,7 @@ export default function MusicTasteAnalyzerSection() {
         <div>
           <h2 className="section-title">Music Taste Analyzer</h2>
           <p className="section-desc">
-            Feed this floppy disk 5 of your favourite tracks. Our Hermes AI agent generates a completely original personality analysis — fresh every time, built from your specific song choices. No presets, no templates, just your acoustic DNA decoded from scratch.
+            Feed this floppy disk 5 of your favourite tracks! PS - You may or not may not get a brutally honest take on your music taste (warned you in advance)
           </p>
         </div>
       </div>
