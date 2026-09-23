@@ -125,6 +125,20 @@ export const portfolioData = {
         code: "#"
       },
       color: "#D98296"
+    },
+
+    {
+      id: "time-series-forecasting",
+      title: "Time Series Forecasting to predict Next Day's SONY Stocks Closing Prices",
+      category: "Quantitative Finance",
+      badge: "RNN Time Series Project",
+      description: "An end-to-end time series forecasting and deployment project evaluating 13 years of non-stationary Sony Group Corporation (SONY) stock market data which benchmarks a PyTorch Lightning LSTM architecture against a Scikit-Learn Linear Regression",
+      tags: ["Python", "Quant Finance", "Pytorch", "Pandas", "Matplotlib", "Sci-kit Learn", "Pytorch Lightning", "LSTM", "RNN"],
+      links: {
+        code: "https://github.com/FatimaSaadat17/SONY_closingprice_prediction",
+        paper: "https://precious-columnist-a00.notion.site/Time-Series-Forecasting-for-SONY-Stocks-Closing-prices-3e4f4ed388e280cb8559d0cda029f77d"
+      },
+      color: "B1E5E6"
     }
   ],
 
