@@ -47,7 +47,8 @@ export const portfolioData = {
           { name: "C / C++", level: "Intermediate" },
           { name: "SQL", level: "Intermediate" },
           { name: "HTML5 / CSS3", level: "Proficient" },
-          {name: "Java", level: "Proficient"}
+          {name: "Java", level: "Proficient"},
+          {name: "Functional Programming with Haskell", level: "Intermediate"}
         ]
       },
       {
@@ -58,7 +59,9 @@ export const portfolioData = {
           { name: "Node.js & Express", level: "Intermediate" },
           { name: "REST APIs & JSON Services", level: "Intermediate" },
           { name: "Spring Boot", level: "Beginner" },
-          { name: "UI/UX & Responsive Design", level: "Design-Savvy" }
+          { name: "UI/UX & Responsive Design", level: "Design-Savvy" },
+          { name: "Angular", level: "Intermediate" },
+          { name: "PostgreSQL", level: "Advanced" }
         ]
       },
       {
