@@ -139,6 +139,20 @@ export const portfolioData = {
         paper: "https://precious-columnist-a00.notion.site/Time-Series-Forecasting-for-SONY-Stocks-Closing-prices-3e4f4ed388e280cb8559d0cda029f77d"
       },
       color: "B1E5E6"
+    },
+
+     {
+      id: "classification-nn",
+      title: "Predicting Heart Disease using Multi-layer Perpceptrons",
+      category: "Cheminformatics & AI",
+      badge: "RNN Time Series Project",
+      description: "An interactive machine learning web application built with Streamlit and PyTorch that predicts the presence of heart disease based on 13 patient clinical parameters. The model architecture is a Multi-Layer Perceptron (MLP) trained and hyperparameter-tuned using Ray Tune.",
+      tags: ["Python", "BioInformatics", "Pytorch", "Ray tune", "Matplotlib", "Sci-kit Learn", "MLP", "Linear NN"],
+      links: {
+        code: "https://github.com/FatimaSaadat17/SONY_closingprice_prediction",
+        paper: "https://precious-columnist-a00.notion.site/Time-Series-Forecasting-for-SONY-Stocks-Closing-prices-3e4f4ed388e280cb8559d0cda029f77d"
+      },
+      color: "8EA66B"
     }
   ],
 
